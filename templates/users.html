@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p><h1>{% block title %}Cyber Security Center {% endblock %}</h1>
+    <div style="display: inline-block; margin-left: 50px; font-size:20px;font-weight:bold; color:grey" >----Authorized Only</div>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">{{message}}</div>
+    {% endfor %}
+
+
+<table class="table table-hover mt-1">
+    <thead>
+    <tr >
+        <th scope="col" >RowID</th>
+        <th scope="col" >UserID</th>
+        <th scope="col" class="pr-3" >Name</th>
+        <th scope="col" >Email</th>
+        <th scope="col">Active</th>
+        <th scope="col" >Register Time</th>
+
+    </tr>
+    </thead>
+      {% for user in users %}
+    <tbody>
+
+        <tr  class="clickable" style="cursor: pointer;">
+            <td scope="row">{{user[0]}}</td>
+            <td scope="row">{{user[1]}}</td>
+            <td scope="row" class="pr-3">{{user[2]}}</td>
+            <td scope="row">{{user[4]}}</td>
+            <td name="checkbox">
+                <div class="input-group pull-right">
+                <input id="Checkbox{{user[1]}}" type="checkbox" onclick="rowCheckuser(this);">
+                </div>
+            </td>
+            <td scope="row">{{user[6]}}</td>
+
+
+
+        </tr>
+
+    </tbody>
+
+
+
+<script>
+      var value="{{user[5]}}";
+      var x=document.getElementById("Checkbox{{user[1]}}")
+  if (value==1){
+                    x.checked=true;
+                    }
+  else{
+                    x.checked=false;
+                             }
+ </script>
+    {% endfor %}
+    </table>
+
+<div class="btn-toolbar float-right mt-5" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-3" role="group" aria-label="First group">
+    <a href="{{url_for('resetpassword')}}">
+      <button type="button" class="btn btn-outline-primary " >Reset Password</button>
+      </a>
+  </div>
+  <div class="btn-group mr-3" role="group" aria-label="Second group">
+      <a href="{{url_for('newuser')}}">
+    <button type="button" class="btn btn-outline-primary " >Regirest New User</button>
+      </a>
+  </div>
+
+</div>
+
+
+<script src="/static/js/usertable.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+
+
+</script>
+
+{% endblock %}

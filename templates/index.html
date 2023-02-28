@@ -1,0 +1,400 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p><h1>{% block title %}Cyber Security Center {% endblock %}</h1>
+    <div style="display: inline-block; margin-left: 50px; font-size:20px;font-weight:bold; color:grey" >----Authorized Only</div>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">{{message}}</div>
+    {% endfor %}
+
+<form action='uploader' method="post" enctype="multipart/form-data">
+
+
+    <input type="file" name="file" class="pt-5" accept=".csv" multiple>
+    <input type="submit" value="Import Data" disabled class="btn btn-outline-primary btn-sm">
+
+</form>
+
+<script>
+    document.querySelector("input[type=file]").onchange = ({
+      target: { value },
+    }) => {
+      document.querySelector("input[type=submit]").disabled = !value;
+    };
+  </script>
+
+
+<form method="post" action='/search'>
+    <div class="btn-group">
+<div class="dropdown">
+  <button class="btn btn-outline-primary dropdown-toggle ml-3 mt-4" type="button"
+          id="dropdownMenu1" data-toggle="dropdown" name="risk"
+          aria-haspopup="true" aria-expanded="true">
+    <i >RISK</i>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownMenu1">
+
+      <li >
+      <label>
+        <input type="checkbox" checked name="critical" autocomplete="on"> Critical
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" checked name="high" autocomplete="on"> High
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" checked name="medium" autocomplete="on"> Medium
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" checked name="low" autocomplete="on"> Low
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" name="none" autocomplete="on"> None
+      </label>
+    </li>
+  </ul>
+</div>
+
+<div class="dropdown">
+  <button class="btn btn-outline-primary dropdown-toggle ml-3 mt-4" type="button"
+          id="dropdownMenu1" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="true">
+    <i >BRANCH</i>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownMenu1">
+
+    <li >
+      <label>
+        <input type="checkbox" checked name="all" autocomplete="on"> ALL
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" name="boyn"> BOYN
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" name="bran"> BRAN
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" name="brsp"> BRSP
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" name="chas"> CHAS
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" name="clea"> CLEA
+      </label>
+    </li>
+
+
+    <li >
+      <label>
+        <input type="checkbox" name="cola"> COLA
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" name="colu"> COLU
+      </label>
+    </li>
+
+
+    <li >
+      <label>
+        <input type="checkbox" name="dani"> DANI
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" name="dayt"> DAYT
+      </label>
+    </li>
+
+      <li >
+      <label>
+        <input type="checkbox" name="deer"> DEER
+      </label>
+    </li>
+
+      <li >
+      <label>
+        <input type="checkbox" name="flor"> FLOR
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="ftla"> FTLA
+      </label>
+    </li>
+
+      <li >
+      <label>
+        <input type="checkbox" name="ftpi"> FTPI
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="gain"> GAIN
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="jaxd"> JAXD
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="jaxs"> JAXS
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="kend"> KEND
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="lake"> LAKE
+      </label>
+    </li>
+
+      <li >
+      <label>
+        <input type="checkbox" name="ltri"> LTRI
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="melb"> MELB
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="mlks"> MLKS
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="ocal"> OCAL
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="orld"> ORLD
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="orln"> ORLN
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="ptri"> PTRI
+      </label>
+    </li>
+
+      <li >
+      <label>
+        <input type="checkbox" name="rock"> ROCK
+      </label>
+    </li>
+      <li >
+      <label>
+        <input type="checkbox" name="sara"> SARA
+      </label>
+    </li>
+
+      <li >
+      <label>
+        <input type="checkbox" name="stua"> STUA
+      </label>
+    </li>
+
+      <li >
+      <label>
+        <input type="checkbox" name="summ"> SUMM
+      </label>
+    </li>
+
+      <li >
+      <label>
+        <input type="checkbox" name="tall"> TALL
+      </label>
+    </li>
+
+      <li >
+      <label>
+        <input type="checkbox" name="wpbh"> WPBH
+      </label>
+    </li>
+
+  </ul>
+</div>
+
+<div class="dropdown">
+  <button class="btn btn-outline-primary dropdown-toggle ml-3 mt-4" type="button"
+          id="dropdownMenu1" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="true">
+    <i >SOLVED?</i>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownMenu1">
+
+    <li >
+      <label>
+        <input type="checkbox" name="yes" autocomplete="on"> YES
+      </label>
+    </li>
+
+    <li >
+      <label>
+        <input type="checkbox" checked name="no" autocomplete="on"> NO
+      </label>
+    </li>
+
+  </ul>
+</div>
+
+
+
+  <input type="text" class="rounded ml-3 mt-4" name="keyword" placeholder="Search Key Words">
+  <input type="submit" class="btn btn-primary ml-3 mt-4" value="Search">
+</div>
+
+</form>
+
+<p class="mt-4"><em>{{info}}</em></p>
+
+
+<table class="table table-hover mt-1">
+    <thead>
+    <tr >
+
+        <th scope="col" >RowID</th>
+        <th scope="col" >ID</th>
+        <th scope="col" class="pr-3" >Risk</th>
+        <th scope="col" >Host</th>
+        <th scope="col">Protocol</th>
+        <th scope="col" >Port</th>
+        <th scope="col" >Name</th>
+        <th scope="col" >Branch</th>
+        <th scope="col" >Date</th>
+        <th scope="col">Solved</th>
+
+    </tr>
+    </thead>
+      {% for result in results %}
+    <tbody>
+
+        <tr  class="clickable" data-toggle="collapse" data-target="#group-of-rows-{{result[0]}}" aria-expanded="false" aria-controls="group-of-rows-1" style="cursor: pointer;">
+
+            <td scope="row">{{result[0]}}</td>
+            <td scope="row">{{result[1]}}</td>
+            <td scope="row" class="pr-3">{{result[4]}}</td>
+            <td scope="row">{{result[5]}}</td>
+            <td scope="row">{{result[6]}}</td>
+            <td scope="row">{{result[7]}}</td>
+            <td scope="row">{{result[8]}}</td>
+            <td scope="row">{{result[16][0:4]}}</td>
+            <td scope="row">{{result[17][:10]}}</td>
+
+            <td name="checkbox">
+                <div class="input-group pull-right">
+                <input id="Checkbox{{result[0]}}" type="checkbox" onclick="rowCheck(this);">
+                </div>
+            </td>
+
+        </tr>
+
+    </tbody>
+    <tbody id="group-of-rows-{{result[0]}}" class="collapse">
+    <tr class="table-warning">
+        <td colspan="2">Synopsis</td>
+        <td colspan="8">{{result[9]}}</td>
+    </tr>
+    <tr class="table-warning">
+        <td colspan="2">Description</td>
+        <td colspan="8">{{result[10]}}</td>
+    </tr>
+    <tr class="table-warning">
+        <td colspan="2">Solution</td>
+        <td colspan="8">{{result[11]}}</td>
+    </tr>
+    <tr class="table-warning">
+        <td scope="row" colspan="2">Other Info</td>
+        <td scope="row" colspan="8"><p style="font-size:0.7vw;">CVE:&nbsp;&nbsp;{{result[2]}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CVSS:&nbsp;&nbsp;{{result[3]}}<br/>See Also:&nbsp;&nbsp;{{result[12]}}<br/> Output:&nbsp;&nbsp;{{result[13]}}<br/>TimeStamp:&nbsp;&nbsp;{{result[17]}}</p></td>
+    </tr>
+    <tr class="table-warning">
+        <td colspan="2">Comment</td>
+
+        <td colspan="7" id="comment" contenteditable="true">{{result[15]}}</td>
+        <td name="buttons">
+                <div class="btn-group pull-right">
+
+                <button id="bAcep" name="{{result[0]}}" type="button" class="btn btn-sm btn-default"  onclick="rowAcep(this);">
+                    <span > <i class="material-symbols-outlined" style="font-size:20px">save</i></span></button>
+
+                <button id="bAcep" name="{{result[0]}}" type="button" class="btn btn-sm btn-default"  onclick="searchAcep(this);">
+                    <span > <i class="material-symbols-outlined" style="font-size:20px">search</i></span></button>
+
+                </div>
+            </td>
+    </tr>
+
+    </tr>
+    </tbody>
+
+<script>
+      var value="{{result[14]}}";
+      var x=document.getElementById("Checkbox{{result[0]}}")
+  if (value=="Yes"){
+                    x.checked=true;
+                    }
+  else{
+                    x.checked=false;
+                             }
+ </script>
+    {% endfor %}
+    </table>
+
+
+
+
+<script src="/static/js/bootstable.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+
+
+</script>
+
+{% endblock %}

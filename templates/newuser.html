@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p><h1>{% block title %}Cyber Security Center {% endblock %}</h1>
+    <div style="display: inline-block; margin-left: 50px; font-size:20px;font-weight:bold; color:grey" >----Authorized Only</div>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">{{message}}</div>
+    {% endfor %}
+
+
+<form action="/new_user" method="post" onsubmit ="return validateForm()" >
+    <label for="userid"> User ID:</label><br>
+  <input type="text" class="rounded ml-2" id="userid" name="userid" placeholder="User ID">
+<span id = "blankMsg" style="color:red"> </span><br><br>
+    <label for="name">Display Name:</label><br>
+  <input type="text" class="rounded ml-2" id="name" name="name" placeholder="Display Name"><br><br>
+    <label for="email">Email address:</label><br>
+  <input type="email" class="rounded ml-2" id="email" name="email" placeholder="Email">
+<span id = "charMsg" style="color:red"> </span><br><br>
+    <label for="password">Password:</label><br>
+  <input type="password" class="rounded ml-2" id="password" name="password" placeholder="Password">
+    <span id = "message1" style="color:red"> </span><br><br>
+    <label for="confirm">Confirm Password:</label><br>
+  <input type="password" class="rounded ml-2" id="confirm" name="confirm" placeholder="Confirm Password">
+<span id = "message2" style="color:red"> </span><br><br>
+  <input type="submit" class="btn btn-primary ml-3 mt-4" value="Submit">
+
+</form>
+<script>
+function validateForm() {
+    //collect form data in JavaScript variables
+    var pw1 = document.getElementById("password").value;
+    var pw2 = document.getElementById("confirm").value;
+    var userid = document.getElementById("userid").value;
+    var email = document.getElementById("email").value;
+
+    //check empty first name field
+    if(userid == "") {
+      document.getElementById("blankMsg").innerHTML = "**Fill the first name";
+      return false;
+    }
+
+    //character data validation
+    if(!isNaN(userid)){
+      document.getElementById("blankMsg").innerHTML = "**Only characters are allowed";
+      return false;
+    }
+
+   //character data validation
+    if(!isNaN(email)){
+      document.getElementById("charMsg").innerHTML = "**Only characters are allowed";
+      return false;
+    }
+
+    //check empty password field
+    if(pw1 == "") {
+      document.getElementById("message1").innerHTML = "**Fill the password please!";
+      return false;
+    }
+
+    //check empty confirm password field
+    if(pw2 == "") {
+      document.getElementById("message2").innerHTML = "**Enter the password please!";
+      return false;
+    }
+
+    //minimum password length validation
+    if(pw1.length < 8) {
+      document.getElementById("message1").innerHTML = "**Password length must be at least 8 characters";
+      return false;
+    }
+
+    //maximum length of password validation
+    if(pw1.length > 20) {
+      document.getElementById("message1").innerHTML = "**Password length must not exceed 20 characters";
+      return false;
+    }
+
+    if(pw1 != pw2) {
+      document.getElementById("message2").innerHTML = "**Passwords are not same";
+      return false;
+    } else {
+      alert ("Your password created successfully");
+     }
+ }
+</script>
+
+<script src="/static/js/bootstable.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+
+
+</script>
+
+{% endblock %}

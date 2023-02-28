@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p><h1>{% block title %}Cyber Security Center {% endblock %}</h1>
+    <div style="display: inline-block; margin-left: 50px; font-size:20px;font-weight:bold; color:grey" >----Knowledge Base</div>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">{{message}}</div>
+    {% endfor %}
+
+
+<p class="mt-4"><em>{{info}}</em></p>
+
+
+<table class="talbe table-hover mt-1">
+    <thead>
+    <tr >
+        <th scope="col" >RowID</th>
+        <th scope="col" >ID</th>
+        <th scope="col" class="pr-3" >Risk</th>
+        <th scope="col" >Host</th>
+        <th scope="col">Protocol</th>
+        <th scope="col" >Port</th>
+        <th scope="col" >Name</th>
+        <th scope="col">Solved</th>
+
+    </tr>
+    </thead>
+      {% for result in results %}
+    <tbody>
+
+        <tr  class="clickable" data-toggle="collapse" data-target="#group-of-rows-{{result[0]}}" aria-expanded="false" aria-controls="group-of-rows-1" style="cursor: pointer;">
+            <td scope="row">{{result[0]}}</td>
+            <td scope="row">{{result[1]}}</td>
+            <td scope="row" class="pr-3">{{result[4]}}</td>
+            <td scope="row">{{result[5]}}</td>
+            <td scope="row">{{result[6]}}</td>
+            <td scope="row">{{result[7]}}</td>
+            <td scope="row">{{result[8]}}</td>
+            <td name="checkbox">
+                <div class="input-group pull-right">
+                <input id="Checkbox{{result[0]}}" type="checkbox" onclick="rowCheck(this);">
+                </div>
+            </td>
+
+        </tr>
+
+    </tbody>
+    <tbody id="group-of-rows-{{result[0]}}" class="collapse.in">
+       <tr class="table-success">
+        <td colspan="2">Comment</td>
+
+        <td colspan="5" id="comment" contenteditable="true">{{result[15]}}</td>
+        <td name="buttons">
+                <div class="btn-group pull-right">
+
+                <button id="bAcep" name="{{result[0]}}" type="button" class="btn btn-sm btn-default"  onclick="rowAcep(this);">
+                    <span > <i class="material-symbols-outlined" style="font-size:20px">save</i></span></button>
+
+                </div>
+            </td>
+    </tr>
+
+    </tr>
+    </tbody>
+
+<script>
+      var value="{{result[14]}}";
+      var x=document.getElementById("Checkbox{{result[0]}}")
+  if (value=="Yes"){
+                    x.checked=true;
+                    }
+  else{
+                    x.checked=false;
+                             }
+ </script>
+    {% endfor %}
+    </table>
+
+
+
+
+<script src="/static/js/bootstable.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+
+
+</script>
+
+{% endblock %}
